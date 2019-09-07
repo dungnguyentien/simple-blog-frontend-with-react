@@ -1,10 +1,14 @@
 import express from 'express';
 
-import renderServerSideContent from '../template';
-
+// initial router
 const router = express.Router();
-router.get('/', async (req, res) => {
-	const content = renderServerSideContent();
-	return res.status(200).send(content);
+
+// @TODO api routes
+
+// frontend routes
+router.get('*', async (req, res) => {
+	return res.status(res.statusCode || 200).send(req.ssrContent);
 });
+
+//
 export default router;

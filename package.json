@@ -18,11 +18,16 @@
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
 		"handlebars": "^4.2.0",
+		"hoist-non-react-statics": "^3.3.0",
 		"react": "^16.9.0",
-		"react-dom": "^16.9.0"
+		"react-dom": "^16.9.0",
+		"react-router": "^5.0.1",
+		"react-router-dom": "^5.0.1",
+		"serialize-javascript": "^2.1.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.5",
+		"@babel/plugin-transform-runtime": "^7.6.0",
 		"@babel/polyfill": "^7.4.4",
 		"@babel/preset-env": "^7.5.5",
 		"@babel/preset-react": "^7.0.0",
@@ -30,6 +35,8 @@
 		"babel-loader": "^8.0.6",
 		"babel-plugin-react-svg": "^3.0.3",
 		"css-loader": "^3.2.0",
+		"faker": "^4.1.0",
+		"file-loader": "^4.2.0",
 		"html-loader": "^0.5.5",
 		"isomorphic-style-loader": "^5.1.0",
 		"node-sass": "^4.12.0",
@@ -41,7 +48,6 @@
 		"svg-inline-loader": "^0.8.0",
 		"webpack": "^4.39.3",
 		"webpack-cli": "^3.3.8",
-		"webpack-node-externals": "^1.7.2",
-		"file-loader": "^4.2.0"
+		"webpack-node-externals": "^1.7.2"
 	}
 }

@@ -9,16 +9,16 @@ module.exports = {
 	...globalConfig,
 	///
 	entry: {
-		server: ['@babel/polyfill', './src/server/server.js']
+		server: ['@babel/polyfill', './src/server/server.js'],
 	},
 	output: {
 		path: path.join(__dirname, '../../dist'),
-		filename: '[name].js'
+		filename: '[name].js',
 	},
 	target: 'node',
 	externals: [nodeExternals()],
 	node: {
 		fs: 'empty',
-		net: 'empty'
-	}
+		net: 'empty',
+	},
 };

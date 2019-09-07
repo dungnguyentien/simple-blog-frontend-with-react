@@ -1,0 +1,17 @@
+.site-header {
+	.dropdown-menu {
+		margin-top: 0;
+	}
+
+	.nav-item {
+		&.dropdown {
+			&:hover {
+				> .dropdown-menu {
+					@include media-breakpoint-up(lg) {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+}

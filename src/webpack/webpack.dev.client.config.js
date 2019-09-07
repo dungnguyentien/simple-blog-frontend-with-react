@@ -6,13 +6,13 @@ const config = {
 	// client side
 	entry: {
 		vendor: ['@babel/polyfill', 'react'],
-		app: ['./src/index.js']
+		app: ['./src/index.js'],
 	},
 	output: {
 		path: path.resolve(__dirname, '../../public/build'),
-		filename: '[name].js'
+		filename: '[name].js',
 	},
-	target: 'web'
+	target: 'web',
 };
 
 module.exports = config;

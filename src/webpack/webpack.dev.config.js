@@ -9,15 +9,27 @@ const config = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-env', '@babel/preset-react']
-					}
+						presets: ['@babel/preset-env', '@babel/preset-react'],
+						plugins: [
+							[
+								'@babel/plugin-transform-runtime',
+								{
+									absoluteRuntime: false,
+									corejs: false,
+									helpers: true,
+									regenerator: true,
+									useESModules: false,
+								},
+							],
+						],
+					},
 				},
-				exclude: /node_modules/
+				exclude: /node_modules/,
 			},
 			{
 				test: /\.html$/,
 				exclude: /node_modules/,
-				use: { loader: 'html-loader' }
+				use: { loader: 'html-loader' },
 			},
 			{
 				test: /\.(s[ac]ss|css)$/i,
@@ -33,22 +45,23 @@ const config = {
 					'isomorphic-style-loader',
 					{
 						loader: 'css-loader',
-						options: {
-							importLoaders: 1
-						}
-					}
+						// options: {
+						// 	importLoaders: 1,
+						// },
+					},
+					'sass-loader',
 					// 'postcss-loader'
-				]
+				],
 			},
 			{
 				test: /\.(png|svg|jpg|gif)$/,
-				use: ['file-loader']
-			}
-		]
+				use: ['file-loader'],
+			},
+		],
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*']
-	}
+		extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*'],
+	},
 };
 
 module.exports = config;
