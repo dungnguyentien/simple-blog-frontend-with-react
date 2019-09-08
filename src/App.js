@@ -2,15 +2,15 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 import useStyles from 'isomorphic-style-loader/useStyles';
 
-// styles
-import AppStyle from './assets/sass/app.scss';
-
 // routes
 import { routes } from './server/middleware/renderServerSideContent';
 
 // components
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+
+// styles
+import AppStyle from './assets/sass/app.scss';
 
 //
 function App({ pageInitialProps, globalData }) {
@@ -28,7 +28,12 @@ function App({ pageInitialProps, globalData }) {
 			<div className="wrapper-main">
 				<Switch>
 					{routes.map(({ path, exact, component: RouteComponent }) => (
-						<Route key={path} path={path} exact={exact} render={routeProps => <RouteComponent {...routeProps} {...pageInitialPropsSync} />} />
+						<Route
+							key={path}
+							path={path}
+							exact={exact}
+							render={routeProps => <RouteComponent {...routeProps} {...pageInitialPropsSync} />}
+						/>
 					))}
 				</Switch>
 			</div>

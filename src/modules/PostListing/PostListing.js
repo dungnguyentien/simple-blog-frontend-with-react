@@ -1,52 +1,37 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 // api
 import apiGetPosts from '../../api/posts/getPosts';
+
+// redux
+import * as postListActions from '../../store/actions/posts/postList.actions';
 
 // components
 import PostPreview from '../../components/common/PostPreview';
 import Pagination from '../../components/common/Pagination';
 
 //
-function PostListing({ pageCount, posts: initialPosts, paginationPrefix, match }) {
+function PostListing({ pageCount, posts, isLoading, paginationPrefix, match, loadPosts }) {
 	const { params: { page = 1 } = {} } = match;
 
-	//
 	const [currentPage, updateCurrentPage] = React.useState(parseInt(page));
-	const [posts, updatePosts] = React.useState(initialPosts);
-	const [isLoading, setLoadingStatus] = React.useState(false);
-	const [error, setError] = React.useState(null);
 
-	//
+	// listen to page change
 	React.useEffect(() => {
-		if (currentPage == parseInt(page)) {
-			return;
-		}
-
-		// console.log({ page });
-		new Promise(async (resolve, reject) => {
-			// start loading posts
-			setLoadingStatus(true);
-
-			const { success, message, posts: newPosts } = await apiGetPosts({
-				currentPage,
+		if (currentPage !== parseInt(page)) {
+			loadPosts({
+				page: currentPage,
 			});
-
-			// success
-			if (success) {
-				updateCurrentPage(parseInt(page));
-				updatePosts(newPosts);
-			}
-			// failure
-			else {
-				setError(message);
-			}
-
-			// end loading posts
-			setLoadingStatus(false);
-		});
+		}
 	}, [page]);
+
+	// listen to posts change
+	React.useEffect(() => {
+		updateCurrentPage(parseInt(page));
+	}, [posts]);
 
 	return (
 		<React.Fragment>
@@ -57,5 +42,25 @@ function PostListing({ pageCount, posts: initialPosts, paginationPrefix, match }
 	);
 }
 
-//
-export default withRouter(PostListing);
+const mapStateToProps = state => {
+	const {
+		list: { data: posts, isLoading },
+	} = state.posts;
+
+	return {
+		posts,
+		isLoading,
+	};
+};
+
+const mapDispatchToProps = {
+	loadPosts: postListActions.getPostsRequest,
+};
+
+export default compose(
+	connect(
+		mapStateToProps,
+		mapDispatchToProps,
+	),
+	withRouter,
+)(PostListing);

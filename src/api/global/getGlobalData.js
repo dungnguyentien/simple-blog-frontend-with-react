@@ -26,14 +26,25 @@ function fakeMenu() {
 
 //
 function getGlobalData() {
-	// @TODO call api to load global data
-	// fake data
-	return {
-		siteTitle: 'React App',
-		logo: faker.image.imageUrl(100, 100, 'abstract'),
-		primaryMenu: fakeMenu(),
-		footerMenu: fakeMenu(),
-	};
+	return new Promise((resolve, reject) => {
+		// const success = faker.random.boolean();
+		const success = true;
+
+		// failure
+		if (!success) {
+			reject('Something goes wrong, please reload the page or try again later');
+			return;
+		}
+
+		// success
+		// fake data
+		resolve({
+			siteTitle: 'React App',
+			logo: faker.image.imageUrl(100, 100, 'abstract'),
+			primaryMenu: fakeMenu(),
+			footerMenu: fakeMenu(),
+		});
+	});
 }
 
 //

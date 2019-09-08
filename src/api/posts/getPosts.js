@@ -1,32 +1,25 @@
 import faker from 'faker';
 
-//
+// utils
 import fakePosts from '../../utils/fakePosts';
 
 //
-async function getPosts(query) {
-	return new Promise(resolve =>
+function getPosts(query) {
+	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			// const success = faker.random.boolean();
 			const success = true;
 
 			// failure
 			if (!success) {
-				resolve({
-					success: false,
-					message: 'Something goes wrong, please reload the page or try later',
-				});
+				reject('Something goes wrong, please reload the page or try again later');
 				return;
 			}
 
 			// success
-			resolve({
-				success: true,
-				posts: fakePosts(),
-			});
-		}, 1000),
-	);
+			resolve(fakePosts());
+		}, 1000);
+	});
 }
 
-//
 export default getPosts;

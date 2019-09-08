@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+// store
+import store from './store';
+
 // import indexStyle from './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -13,9 +18,11 @@ const insertCss = (...styles) => {
 
 ReactDOM.hydrate(
 	<StyleContext.Provider value={{ insertCss }}>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
+		<Provider store={store}>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
+		</Provider>
 	</StyleContext.Provider>,
 	document.getElementById('root'),
 );
