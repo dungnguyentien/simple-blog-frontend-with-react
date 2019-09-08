@@ -5,10 +5,10 @@ import { matchPath } from 'react-router';
 import apiGetFrontPage from '../api/page/getFrontPage';
 
 // hoc
-import withPostListing from '../hoc/withPostListing';
+// import withPostListing from '../hoc/withPostListing';
 
 // components
-import PostListing from '../components/PostListing/PostListing';
+import PostListing from '../modules/PostListing/PostListing';
 
 //
 class Home extends React.Component {
@@ -22,15 +22,15 @@ class Home extends React.Component {
 	}
 
 	render() {
-		const { title, currentPage, postPageCount, posts, loadingPosts } = this.props;
+		const { title, postPageCount, posts } = this.props;
 		return (
 			<div className="container">
 				<h1>{title}</h1>
-				<PostListing currentPage={currentPage} pageCount={postPageCount} loadingPosts={loadingPosts} paginationPrefix="/page" posts={posts} />
+				<PostListing pageCount={postPageCount} paginationPrefix="/page" posts={posts} />
 			</div>
 		);
 	}
 }
 
 //
-export default withPostListing(Home);
+export default Home;

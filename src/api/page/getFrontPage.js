@@ -5,7 +5,7 @@ import fakePosts from '../../utils/fakePosts';
 
 //
 function getFrontPage({ routeParams }) {
-	const { params: { page: currentPage = 1 } = {} } = routeParams || {};
+	const { params: { page = 1 } = {} } = routeParams || {};
 
 	// fake data
 	return {
@@ -14,7 +14,6 @@ function getFrontPage({ routeParams }) {
 			title: 'home seo title - ' + faker.lorem.words(),
 			description: faker.lorem.sentences(),
 		},
-		currentPage,
 		postPageCount: faker.random.number({ min: 5, max: 7 }),
 		posts: fakePosts(),
 	};
