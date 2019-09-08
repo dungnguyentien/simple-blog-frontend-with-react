@@ -18,6 +18,7 @@ import AppHead from '../../components/AppHead/AppHead';
 // page components
 import Home from '../../pages/index';
 import Page404 from '../../pages/404';
+import SinglePost from '../../pages/blog/_slug';
 
 // api
 import apiGetGlobalData from '../../api/global/getGlobalData';
@@ -27,6 +28,8 @@ export const routes = [
 	// home
 	{ path: '/', exact: true, component: Home },
 	{ path: '/page/:page', exact: true, component: Home },
+	// blog
+	{ path: '/blog/:slug', exact: true, component: SinglePost },
 	// 404
 	{ path: '*', component: Page404 },
 ];
@@ -46,9 +49,7 @@ async function renderServerSideContent(req, res, next) {
 	// active route
 	let routeParams;
 	const activeRoute = routes.find(route => (routeParams = matchPath(req.path, route)));
-	const pageInitialProps = activeRoute.component.GetInitialProps
-		? await activeRoute.component.GetInitialProps({ req, res, routeParams, store })
-		: {};
+	const pageInitialProps = activeRoute.component.GetInitialProps ? await activeRoute.component.GetInitialProps({ req, res, routeParams }) : {};
 
 	// app component
 	const appContent = ReactDomServer.renderToString(

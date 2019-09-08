@@ -1,7 +1,7 @@
 import faker from 'faker';
 
 //
-import fakePosts from '../../utils/fakePosts';
+import { fakePostPreviews } from '../../utils/fakeDataHelpers';
 
 //
 function getFrontPage({ routeParams }) {
@@ -26,7 +26,7 @@ function getFrontPage({ routeParams }) {
 				description: faker.lorem.sentences(),
 			},
 			postPageCount: faker.random.number({ min: 5, max: 7 }),
-			posts: fakePosts(),
+			posts: fakePostPreviews(),
 		});
 	});
 }

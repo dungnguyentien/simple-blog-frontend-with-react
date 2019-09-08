@@ -2,7 +2,17 @@ import React from 'react';
 
 class Page404 extends React.Component {
 	static GetInitialProps({ req, res }) {
-		res.statusCode = 404;
+		// server-side
+		if (typeof window === 'undefined') {
+			res.statusCode = 404;
+		}
+
+		return {
+			seo: {
+				title: '404 - Page not found',
+				description: '',
+			},
+		};
 	}
 
 	render() {

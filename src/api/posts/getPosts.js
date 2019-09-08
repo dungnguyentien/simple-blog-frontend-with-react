@@ -1,7 +1,7 @@
 import faker from 'faker';
 
 // utils
-import fakePosts from '../../utils/fakePosts';
+import { fakePostPreviews } from '../../utils/fakeDataHelpers';
 
 //
 function getPosts(query) {
@@ -17,7 +17,7 @@ function getPosts(query) {
 			}
 
 			// success
-			resolve(fakePosts());
+			resolve(fakePostPreviews());
 		}, 1000);
 	});
 }

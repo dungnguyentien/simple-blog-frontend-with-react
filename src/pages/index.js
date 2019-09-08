@@ -6,13 +6,17 @@ import apiGetFrontPage from '../api/pages/getFrontPage';
 
 // redux
 import * as PostListActions from '../store/actions/posts/postList.actions';
+import store from '../store';
 
 // components
 import PostListing from '../modules/PostListing/PostListing';
 
+// hoc
+import withPageInit from '../hoc/withPageInit';
+
 //
 class Home extends React.Component {
-	static async GetInitialProps({ req, res, routeParams, store }) {
+	static async GetInitialProps({ req, res, routeParams }) {
 		const { posts, ...pageData } = await apiGetFrontPage({ routeParams });
 
 		//
@@ -28,12 +32,14 @@ class Home extends React.Component {
 		const { title, postPageCount } = this.props;
 		return (
 			<div className="container">
-				<h1>{title}</h1>
-				<PostListing pageCount={postPageCount} paginationPrefix="/page" />
+				<main>
+					<h1>{title}</h1>
+					<PostListing pageCount={postPageCount} paginationPrefix="/page" />
+				</main>
 			</div>
 		);
 	}
 }
 
 //
-export default Home;
+export default withPageInit(Home);
