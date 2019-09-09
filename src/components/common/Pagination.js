@@ -17,20 +17,8 @@ function Pagination({ currentPage, pageCount, paginationPrefix, onClick }) {
 				{/* pagination */}
 				{Array.from(Array(pageCount), (value, number) => {
 					const pageIndex = number + 1;
-					// current page
-					if (pageIndex === currentPage) {
-						return (
-							<li key={pageIndex} className="page-item active">
-								<span className="page-link">
-									{pageIndex}
-									<span className="sr-only">(current)</span>
-								</span>
-							</li>
-						);
-					}
-					//
 					return (
-						<li key={pageIndex} className="page-item">
+						<li key={pageIndex} className={`page-item ${pageIndex === currentPage ? 'active' : ''}`}>
 							<Link className="page-link" to={`${paginationPrefix}/${pageIndex}`}>
 								{pageIndex}
 							</Link>

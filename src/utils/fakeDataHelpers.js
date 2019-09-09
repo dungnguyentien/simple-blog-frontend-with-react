@@ -27,3 +27,10 @@ export function fakePost(slug) {
 		}).join(''),
 	};
 }
+
+export function fakeCategory(slug) {
+	return {
+		...fakePost(slug),
+		url: `/category/${slug}`,
+	};
+}

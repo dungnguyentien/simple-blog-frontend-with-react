@@ -45,17 +45,13 @@ const config = {
 					'isomorphic-style-loader',
 					{
 						loader: 'css-loader',
-						// options: {
-						// 	importLoaders: 1,
-						// },
+						options: {
+							importLoaders: 1,
+						},
 					},
 					'sass-loader',
-					// 'postcss-loader'
+					// 'postcss-loader',
 				],
-			},
-			{
-				test: /\.(png|svg|jpg|gif)$/,
-				use: ['file-loader'],
 			},
 		],
 	},

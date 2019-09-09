@@ -1,5 +1,4 @@
 import React from 'react';
-import NProgress from 'nprogress';
 
 import Page404 from '../pages/404';
 
@@ -7,63 +6,36 @@ function withPageInit(PageComponent) {
 	class WithPageInit extends React.Component {
 		constructor(props) {
 			super(props);
-
-			this.state = {
-				pageData: {},
-			};
 		}
 
 		static async GetInitialProps(context) {
-			const { res } = context;
+			let data;
 			try {
-				const data = await PageComponent.GetInitialProps(context);
-				return {
-					...data,
-				};
+				data = await PageComponent.GetInitialProps(context);
 			} catch (error) {
-				// server-side
-				if (typeof window === 'undefined') {
-					res.statusCode = 404;
+				data = Page404.GetInitialProps(context);
+			} finally {
+				const {
+					seo: { title },
+				} = data;
+				if (typeof window !== 'undefined') {
+					document.title = title;
 				}
-				return {
-					...Page404.GetInitialProps(context),
-					is404: true,
-				};
+				return data;
 			}
-		}
-
-		static getDerivedStateFromProps(props, state) {
-			if (typeof window !== 'undefined' && window.isNotFirstAccessingSite) {
-				NProgress.start();
-			}
-			return props;
-		}
-
-		// client-side - load data after the component is mounted
-		componentDidMount() {
-			// do not load data on client-side on first accessing the site
-			if (!window.isNotFirstAccessingSite) {
-				window.isNotFirstAccessingSite = true;
-				return;
-			}
-
-			const { match: routeParams } = this.props;
-			WithPageInit.GetInitialProps({ routeParams }).then(pageData => {
-				this.setState({ pageData });
-				NProgress.done();
-			});
 		}
 
 		render() {
-			const { is404 } = this.props;
-			const {
-				pageData: { is404: is404State },
-			} = this.state;
+			const { pageData } = this.props;
+			const { is404 = false } = pageData;
 
-			if (is404State || is404) {
-				return <Page404 {...this.props} {...this.state.pageData} />;
+			// is 404
+			if (is404) {
+				return <Page404 {...this.props} pageData={pageData} />;
 			}
-			return <PageComponent {...this.props} {...this.state.pageData} />;
+
+			// page component
+			return <PageComponent {...this.props} pageData={pageData} />;
 		}
 	}
 

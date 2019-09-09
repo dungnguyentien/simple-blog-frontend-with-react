@@ -10,7 +10,7 @@ function fakeMenu() {
 		},
 		{
 			id: faker.random.number(),
-			url: '/categories',
+			url: '#',
 			title: 'Categories',
 			children: Array.from(Array(faker.random.number({ min: 3, max: 5 })), number => {
 				const title = faker.lorem.words();

@@ -29,7 +29,7 @@ class Home extends React.Component {
 	}
 
 	render() {
-		const { title, postPageCount } = this.props;
+		const { title, postPageCount } = this.props.pageData;
 		return (
 			<div className="container">
 				<main>

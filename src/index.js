@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 
 // store
 import store from './store';
+
+// history
+import { history } from './services/routerService';
 
 // import indexStyle from './index.css';
 import App from './App';
@@ -19,9 +22,9 @@ const insertCss = (...styles) => {
 ReactDOM.hydrate(
 	<StyleContext.Provider value={{ insertCss }}>
 		<Provider store={store}>
-			<BrowserRouter>
+			<Router history={history}>
 				<App />
-			</BrowserRouter>
+			</Router>
 		</Provider>
 	</StyleContext.Provider>,
 	document.getElementById('root'),

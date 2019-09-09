@@ -11,28 +11,15 @@ import htmlTemplate from '../../assets/template.html';
 // store
 import store from '../../store';
 
+// routes
+import routes from '../../config/routes';
+
 //
 import App from '../../App';
 import AppHead from '../../components/AppHead/AppHead';
 
-// page components
-import Home from '../../pages/index';
-import Page404 from '../../pages/404';
-import SinglePost from '../../pages/blog/_slug';
-
 // api
 import apiGetGlobalData from '../../api/global/getGlobalData';
-
-// @TODO: load routes based on /src/pages
-export const routes = [
-	// home
-	{ path: '/', exact: true, component: Home },
-	{ path: '/page/:page', exact: true, component: Home },
-	// blog
-	{ path: '/blog/:slug', exact: true, component: SinglePost },
-	// 404
-	{ path: '*', component: Page404 },
-];
 
 //
 async function renderServerSideContent(req, res, next) {

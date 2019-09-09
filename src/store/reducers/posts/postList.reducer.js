@@ -26,6 +26,11 @@ const postListReducer = (state = initialState, action) => {
 				isLoading: false,
 				error: action.payload,
 			};
+		case Actions.EMPTY_POSTS:
+			return {
+				...state,
+				data: [],
+			};
 		default:
 			return state;
 	}

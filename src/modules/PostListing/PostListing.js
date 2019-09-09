@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, matchPath } from 'react-router';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -13,9 +13,25 @@ import * as postListActions from '../../store/actions/posts/postList.actions';
 import PostPreview from '../../components/common/PostPreview';
 import Pagination from '../../components/common/Pagination';
 
+// routes
+import routes from '../../config/routes';
+
 //
-function PostListing({ pageCount, posts, isLoading, paginationPrefix, match, loadPosts }) {
-	const { params: { page = 1 } = {} } = match;
+function PostListing({ pageCount, posts, isLoading, paginationPrefix, match, loadPosts, category }) {
+	let { params: { page = 1 } = {} } = match;
+
+	// find current page on client-side
+	if (typeof window !== 'undefined') {
+		routes.find(route => {
+			const routeParams = matchPath(window.location.pathname, route);
+			if (routeParams) {
+				// console.log({ routeParams });
+				const { params: { page: newPage = 1 } = {} } = routeParams;
+				page = newPage;
+			}
+			return routeParams;
+		});
+	}
 
 	const [currentPage, updateCurrentPage] = React.useState(parseInt(page));
 
@@ -24,6 +40,7 @@ function PostListing({ pageCount, posts, isLoading, paginationPrefix, match, loa
 		if (currentPage !== parseInt(page)) {
 			loadPosts({
 				page: currentPage,
+				category,
 			});
 		}
 	}, [page]);
@@ -36,7 +53,9 @@ function PostListing({ pageCount, posts, isLoading, paginationPrefix, match, loa
 	return (
 		<React.Fragment>
 			{posts && posts.map(post => <PostPreview key={post.id} {...post} />)}
-			<Pagination currentPage={currentPage} pageCount={pageCount} paginationPrefix={paginationPrefix} />
+
+			{pageCount > 1 && <Pagination currentPage={currentPage} pageCount={pageCount} paginationPrefix={paginationPrefix} />}
+
 			{isLoading && <div>loading...</div>}
 		</React.Fragment>
 	);
@@ -58,9 +77,9 @@ const mapDispatchToProps = {
 };
 
 export default compose(
+	withRouter,
 	connect(
 		mapStateToProps,
 		mapDispatchToProps,
 	),
-	withRouter,
 )(PostListing);

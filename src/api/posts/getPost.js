@@ -5,8 +5,8 @@ import { fakePost } from '../../utils/fakeDataHelpers';
 function getPost({ slug }) {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
-			const success = faker.random.boolean();
-			// const success = true;
+			// const success = faker.random.boolean();
+			const success = true;
 			// const success = false;
 
 			// failure

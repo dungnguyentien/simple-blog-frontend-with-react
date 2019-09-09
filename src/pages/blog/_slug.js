@@ -21,7 +21,7 @@ class BlogPost extends React.Component {
 	}
 
 	render() {
-		const { title, content } = this.props;
+		const { title, content } = this.props.pageData;
 		return (
 			<div className="container">
 				<main>
