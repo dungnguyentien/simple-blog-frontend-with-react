@@ -1,5 +1,5 @@
 import React from 'react';
-import { matchPath } from 'react-router';
+import { compose } from 'redux';
 
 // api
 import apiGetFrontPage from '../api/pages/getFrontPage';
@@ -13,6 +13,9 @@ import PostListing from '../modules/PostListing/PostListing';
 
 // hoc
 import withPageInit from '../hoc/withPageInit';
+
+// layout
+import withDefaultLayout from '../page-layouts/withDefaultLayout';
 
 //
 class Home extends React.Component {
@@ -42,4 +45,7 @@ class Home extends React.Component {
 }
 
 //
-export default withPageInit(Home);
+export default compose(
+	withPageInit,
+	withDefaultLayout,
+)(Home);

@@ -26,6 +26,7 @@ function getFrontPage({ routeParams }) {
 					title: 'home seo title - ' + faker.lorem.words(),
 					description: faker.lorem.sentences(),
 				},
+				excerpt: faker.lorem.sentences(),
 				postPageCount: faker.random.number({ min: 5, max: 7 }),
 				posts: fakePostPreviews(),
 			});

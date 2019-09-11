@@ -95,9 +95,9 @@ class App extends React.Component {
 
 		return (
 			<div className="App">
-				<Header {...globalDataSync} />
-				<div className="wrapper-main">
-					<Switch location={this.state.location}>
+				{/* <Header {...globalDataSync} /> */}
+				
+				<Switch location={this.state.location}>
 						{routes.map(({ path, exact, component: RouteComponent }) => {
 							return (
 								<Route
@@ -112,8 +112,8 @@ class App extends React.Component {
 							);
 						})}
 					</Switch>
-				</div>
-				<Footer {...globalDataSync} />
+
+				{/* <Footer {...globalDataSync} /> */}
 			</div>
 		);
 	}
