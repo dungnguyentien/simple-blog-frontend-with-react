@@ -7,9 +7,6 @@
 		&.dropdown {
 			&:hover {
 				> .dropdown-menu {
-					@include media-breakpoint-up(lg) {
-						display: block;
-					}
 				}
 			}
 		}
