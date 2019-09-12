@@ -33,22 +33,22 @@ function PostListing({ pageCount, posts, isLoading, paginationPrefix, match, loa
 		});
 	}
 
+	// convert page to integer
+	page = parseInt(page);
+
+	// current page state
 	const [currentPage, updateCurrentPage] = React.useState(parseInt(page));
 
 	// listen to page change
 	React.useEffect(() => {
 		if (currentPage !== parseInt(page)) {
+			updateCurrentPage(parseInt(page));
 			loadPosts({
-				page: currentPage,
+				page,
 				category,
 			});
 		}
 	}, [page]);
-
-	// listen to posts change
-	React.useEffect(() => {
-		updateCurrentPage(parseInt(page));
-	}, [posts]);
 
 	return (
 		<React.Fragment>

@@ -1,4 +1,6 @@
+const webpack = require('webpack');
 const path = require('path');
+require('dotenv').config();
 
 const config = {
 	mode: 'development',
@@ -58,6 +60,7 @@ const config = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*'],
 	},
+	plugins: [new webpack.EnvironmentPlugin(['WP_REST_API_BASE_URL'])],
 };
 
 module.exports = config;

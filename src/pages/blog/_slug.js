@@ -1,10 +1,14 @@
 import React from 'react';
+import { compose } from 'redux';
 
 // api
 import apiGetPost from '../../api/posts/getPost';
 
 // hoc
 import withPageInit from '../../hoc/withPageInit';
+
+// layout
+import withDefaultLayout from '../../page-layouts/withDefaultLayout';
 
 //
 class BlogPost extends React.Component {
@@ -21,18 +25,14 @@ class BlogPost extends React.Component {
 	}
 
 	render() {
-		const { title, content } = this.props.pageData;
-		return (
-			<div className="container">
-				<main>
-					<article>
-						<h1>{title}</h1>
-						<div dangerouslySetInnerHTML={{ __html: content }} />
-					</article>
-				</main>
-			</div>
-		);
+		const {
+			content: { rendered: content },
+		} = this.props.pageData;
+		return <div dangerouslySetInnerHTML={{ __html: content }} />;
 	}
 }
 
-export default withPageInit(BlogPost);
+export default compose(
+	withPageInit,
+	withDefaultLayout,
+)(BlogPost);

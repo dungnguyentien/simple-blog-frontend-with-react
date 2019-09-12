@@ -15,11 +15,9 @@ function withPageInit(PageComponent) {
 			} catch (error) {
 				data = Page404.GetInitialProps(context);
 			} finally {
-				const {
-					seo: { title },
-				} = data;
 				if (typeof window !== 'undefined') {
-					document.title = title;
+					const { title, seo: { title: seoTitle } = {} } = data;
+					document.title = seoTitle || title;
 				}
 				return data;
 			}

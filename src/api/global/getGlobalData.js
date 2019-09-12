@@ -39,7 +39,13 @@ function getGlobalData() {
 		// success
 		// fake data
 		resolve({
-			siteTitle: 'React App',
+			title: {
+				rendered: 'Simple Blog',
+			},
+			seo: {
+				title: 'Simple Blog - Just another WordPress site',
+				description: faker.lorem.sentence(),
+			},
 			logo: faker.image.imageUrl(100, 100, 'abstract'),
 			primaryMenu: fakeMenu(),
 			footerMenu: fakeMenu(),

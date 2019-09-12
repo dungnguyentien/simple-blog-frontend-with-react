@@ -1,10 +1,11 @@
 import React from 'react';
 import serialize from 'serialize-javascript';
 
-function AppHead({ css, globalData, pageInitialProps, initialState }) {
+function AppHead({ globalData, pageInitialProps, initialState }) {
 	// @TODO head items
 	const {
-		seo: { title: seoTitle, description: seoDescription },
+		title: { rendered: title },
+		seo: { title: seoTitle, description: seoDescription } = {},
 	} = pageInitialProps;
 	return (
 		<React.Fragment>
@@ -13,7 +14,7 @@ function AppHead({ css, globalData, pageInitialProps, initialState }) {
 			<meta name="description" content={seoDescription} />
 
 			{/* styles */}
-			<style dangerouslySetInnerHTML={{ __html: [...css].join('') }} />
+			{/* <style dangerouslySetInnerHTML={{ __html: [...css].join('') }} /> */}
 
 			{/* initial data */}
 			<script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.__GLOBAL_DATA__=${serialize(globalData)};` }} />

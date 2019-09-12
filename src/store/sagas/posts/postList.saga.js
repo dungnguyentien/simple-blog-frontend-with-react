@@ -4,8 +4,8 @@ import apiGetPosts from '../../../api/posts/getPosts';
 
 function* getPosts(action) {
 	try {
-		const data = yield call(apiGetPosts, action.payload);
-		yield put(Actions.getPostsSuccess(data));
+		const { posts } = yield call(apiGetPosts, action.payload);
+		yield put(Actions.getPostsSuccess(posts));
 	} catch (error) {
 		yield put(Actions.getPostsFailure(error));
 	}

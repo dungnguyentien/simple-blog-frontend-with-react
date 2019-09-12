@@ -1,8 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Switch, Route, withRouter, matchPath } from 'react-router';
-// import useStyles from 'isomorphic-style-loader/useStyles';
-import withStyles from 'isomorphic-style-loader/withStyles';
 import NProgress from 'nprogress';
 
 // routes
@@ -13,7 +11,10 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
 // styles
-import AppStyles from './assets/sass/app.scss';
+import './assets/sass/app.scss';
+
+// services
+import { setGlobalData } from './services/globalDataService';
 
 class App extends React.Component {
 	constructor(props) {
@@ -90,28 +91,29 @@ class App extends React.Component {
 
 		// global data
 		const globalDataSync = globalData || (typeof window !== 'undefined' ? window.__GLOBAL_DATA__ : {});
+		setGlobalData(globalDataSync);
 		// const pageInitialPropsSync = pageInitialProps || (typeof window !== 'undefined' ? window.__PAGE_INITIAL_PROPS__ : {});
 		const pageInitialPropsSync = this.state.data;
 
 		return (
 			<div className="App">
 				{/* <Header {...globalDataSync} /> */}
-				
+
 				<Switch location={this.state.location}>
-						{routes.map(({ path, exact, component: RouteComponent }) => {
-							return (
-								<Route
-									key={path.toString()}
-									path={path}
-									exact={exact}
-									render={routeProps => {
-										// console.log({ routeProps });
-										return <RouteComponent {...routeProps} pageData={pageInitialPropsSync} />;
-									}}
-								/>
-							);
-						})}
-					</Switch>
+					{routes.map(({ path, exact, component: RouteComponent }) => {
+						return (
+							<Route
+								key={path.toString()}
+								path={path}
+								exact={exact}
+								render={routeProps => {
+									// console.log({ routeProps });
+									return <RouteComponent {...routeProps} pageData={pageInitialPropsSync} />;
+								}}
+							/>
+						);
+					})}
+				</Switch>
 
 				{/* <Footer {...globalDataSync} /> */}
 			</div>
@@ -119,7 +121,4 @@ class App extends React.Component {
 	}
 }
 
-export default compose(
-	withRouter,
-	withStyles(AppStyles),
-)(App);
+export default withRouter(App);

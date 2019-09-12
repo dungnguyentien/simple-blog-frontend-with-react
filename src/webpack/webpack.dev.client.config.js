@@ -1,9 +1,10 @@
 const path = require('path');
-const globalConfig = require('./webpack.dev.config');
+const globalConfig = require('./webpack.config');
 
 const config = {
 	...globalConfig,
 	// client side
+	mode: 'development',
 	entry: {
 		vendor: ['@babel/polyfill', 'react'],
 		app: ['./src/index.js'],

@@ -20,9 +20,13 @@ import withDefaultLayout from '../page-layouts/withDefaultLayout';
 //
 class Home extends React.Component {
 	static async GetInitialProps({ req, res, routeParams }) {
-		const { posts, ...pageData } = await apiGetFrontPage({ routeParams });
+		// extract query params
+		const { params: { page = 1 } = {} } = routeParams || {};
 
-		//
+		// call api
+		const { posts, ...pageData } = await apiGetFrontPage({ page });
+
+		// update posts state
 		store.dispatch(PostListActions.getPostsSuccess(posts));
 
 		//
@@ -32,13 +36,10 @@ class Home extends React.Component {
 	}
 
 	render() {
-		const { title, postPageCount } = this.props.pageData;
+		const { postPageCount } = this.props.pageData;
 		return (
 			<div className="container">
-				<main>
-					<h1>{title}</h1>
-					<PostListing pageCount={postPageCount} paginationPrefix="/page" />
-				</main>
+				<PostListing pageCount={postPageCount} paginationPrefix="/page" />
 			</div>
 		);
 	}

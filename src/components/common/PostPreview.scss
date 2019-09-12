@@ -1,0 +1,17 @@
+.post-preview {
+	margin-bottom: rem-calc(70);
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.post-preview__title {
+	font-size: rem-calc(30);
+	margin: 0;
+
+	a {
+		color: #000;
+		text-decoration: none;
+	}
+}
