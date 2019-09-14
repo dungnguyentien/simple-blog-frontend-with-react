@@ -1,20 +1,21 @@
+const webpack = require('webpack');
+const merge = require('webpack-merge');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 //
-const globalConfig = require('./config');
+const baseConfig = require('./base');
 
 //
-module.exports = {
-	...globalConfig,
-	//
+module.exports = merge(baseConfig, {
+	name: 'server',
 	mode: 'development',
 	entry: {
 		server: ['@babel/polyfill', './src/server/server.js'],
 	},
 	output: {
 		path: path.join(__dirname, '../../buildServer'),
-		filename: '[name].js',
+		filename: 'server.js',
 	},
 	target: 'node',
 	externals: [nodeExternals()],
@@ -22,4 +23,9 @@ module.exports = {
 		fs: 'empty',
 		net: 'empty',
 	},
-};
+	plugins: [
+		new webpack.optimize.LimitChunkCountPlugin({
+			maxChunks: 1,
+		}),
+	],
+});

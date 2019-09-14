@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('extract-css-chunks-webpack-plugin');
+
 require('dotenv').config();
 
 const config = {
@@ -34,24 +37,25 @@ const config = {
 				use: { loader: 'html-loader' },
 			},
 			{
-				test: /\.(s[ac]ss|css)$/i,
-				// use: [
-				// 	// Creates `style` nodes from JS strings
-				// 	'style-loader',
-				// 	// Translates CSS into CommonJS
-				// 	'css-loader',
-				// 	// Compiles Sass to CSS
-				// 	'sass-loader'
-				// ]
+				test: /\.(sa|sc|c)ss$/i,
 				use: [
+					// Creates `style` nodes from JS strings
+					// 'style-loader',
+					//
+					MiniCssExtractPlugin.loader,
+					// Translates CSS into CommonJS
+					// 'css-loader',
 					{
 						loader: 'css-loader',
 						options: {
+							// sourceMap: true,
+							// modules: true,
 							importLoaders: 1,
+							// localIdentName: '[name]__[local]___[hash:base64:5]',
 						},
 					},
+					// Compiles Sass to CSS
 					'sass-loader',
-					// 'postcss-loader',
 				],
 			},
 		],
@@ -59,7 +63,16 @@ const config = {
 	resolve: {
 		extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*'],
 	},
-	plugins: [new webpack.EnvironmentPlugin(['WP_REST_API_BASE_URL'])],
+	plugins: [
+		new webpack.EnvironmentPlugin(['WP_REST_API_BASE_URL']),
+		new MiniCssExtractPlugin({
+			// Options similar to the same options in webpackOptions.output
+			// all options are optional
+			filename: '[name].css',
+			chunkFilename: '[id].css',
+			// ignoreOrder: false, // Enable to remove warnings about conflicting order
+		}),
+	],
 };
 
 module.exports = config;

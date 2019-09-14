@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './404.scss';
+
 class Page404 extends React.Component {
 	static GetInitialProps({ req, res }) {
 		// server-side

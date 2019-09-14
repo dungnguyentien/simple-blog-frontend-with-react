@@ -1,3 +1,5 @@
+// import Loadable from 'react-loadable';
+
 // page components
 import Home from '../pages/index';
 import Page404 from '../pages/404';

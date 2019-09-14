@@ -1,12 +1,14 @@
 const path = require('path');
-const globalConfig = require('./config');
+const merge = require('webpack-merge');
+const { StatsWriterPlugin } = require('webpack-stats-plugin');
+// const { ReactLoadablePlugin } = require('react-loadable/webpack');
 
-const config = {
-	...globalConfig,
-	// client side
+const baseConfig = require('./base');
+
+const config = merge(baseConfig, {
+	name: 'client',
 	mode: 'development',
 	entry: {
-		vendor: ['@babel/polyfill', 'react'],
 		app: ['./src/index.js'],
 	},
 	output: {
@@ -14,6 +16,19 @@ const config = {
 		filename: '[name].js',
 	},
 	target: 'web',
-};
+	plugins: [
+		// new ReactLoadablePlugin({
+		// 	filename: path.resolve(__dirname, '../../buildServer/react-loadable.json'),
+		// }),
+		// Write out stats file to build directory.
+		new StatsWriterPlugin({
+			filename: '../../buildServer/stats.json', // Default
+		}),
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	name: 'manifest',
+		// 	minChunks: Infinity,
+		// }),
+	],
+});
 
 module.exports = config;

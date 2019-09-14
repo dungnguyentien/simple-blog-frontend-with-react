@@ -7,14 +7,12 @@ function AppHead({ globalData, pageInitialProps, initialState }) {
 		title: { rendered: title },
 		seo: { title: seoTitle, description: seoDescription } = {},
 	} = pageInitialProps;
+
 	return (
 		<React.Fragment>
 			{/* SEO */}
 			<title>{seoTitle}</title>
 			<meta name="description" content={seoDescription} />
-
-			{/* styles */}
-			{/* <style dangerouslySetInnerHTML={{ __html: [...css].join('') }} /> */}
 
 			{/* initial data */}
 			<script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.__GLOBAL_DATA__=${serialize(globalData)};` }} />

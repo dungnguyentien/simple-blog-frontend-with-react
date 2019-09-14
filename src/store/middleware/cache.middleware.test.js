@@ -1,7 +1,7 @@
 import chai from 'chai';
 
 import * as PostListActions from '../actions/posts/postList.actions';
-import fakePosts from '../../utils/fakePosts';
+import { fakePostPreviews } from '../../utils/fakeDataHelpers';
 import cacheMiddleware from './cache.middleware';
 
 describe('cache middleware', () => {
@@ -15,7 +15,7 @@ describe('cache middleware', () => {
 	test('should load cache', () => {
 		const actionHandler = nextHandler(action => {});
 
-		const posts = fakePosts();
+		const posts = fakePostPreviews();
 		actionHandler(PostListActions.getPostsSuccess(posts));
 		const { payload } = actionHandler(PostListActions.getPostsRequest());
 
