@@ -1,5 +1,5 @@
 const path = require('path');
-const globalConfig = require('./webpack.config');
+const globalConfig = require('./config');
 
 const config = {
 	...globalConfig,

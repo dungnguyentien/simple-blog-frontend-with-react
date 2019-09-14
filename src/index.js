@@ -9,7 +9,6 @@ import store from './store';
 // import indexStyle from './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import StyleContext from 'isomorphic-style-loader/StyleContext';
 
 const insertCss = (...styles) => {
 	const removeCss = styles.map(style => style._insertCss());
@@ -17,13 +16,11 @@ const insertCss = (...styles) => {
 };
 
 ReactDOM.hydrate(
-	<StyleContext.Provider value={{ insertCss }}>
-		<Provider store={store}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</Provider>
-	</StyleContext.Provider>,
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>,
 	document.getElementById('root'),
 );
 

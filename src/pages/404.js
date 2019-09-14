@@ -9,6 +9,9 @@ class Page404 extends React.Component {
 
 		return {
 			is404: true,
+			title: {
+				rendered: '404 - Page not found',
+			},
 			seo: {
 				title: '404 - Page not found',
 				description: '',

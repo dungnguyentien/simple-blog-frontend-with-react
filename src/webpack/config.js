@@ -44,7 +44,6 @@ const config = {
 				// 	'sass-loader'
 				// ]
 				use: [
-					'isomorphic-style-loader',
 					{
 						loader: 'css-loader',
 						options: {

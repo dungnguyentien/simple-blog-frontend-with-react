@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 //
-const globalConfig = require('./webpack.config');
+const globalConfig = require('./config');
 
 //
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
 		server: ['@babel/polyfill', './src/server/server.js'],
 	},
 	output: {
-		path: path.join(__dirname, '../../dist'),
+		path: path.join(__dirname, '../../buildServer'),
 		filename: '[name].js',
 	},
 	target: 'node',
