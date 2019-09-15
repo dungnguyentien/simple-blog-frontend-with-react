@@ -11,7 +11,7 @@ function AppHead({ globalData, pageInitialProps, initialState }) {
 	return (
 		<React.Fragment>
 			{/* SEO */}
-			<title>{seoTitle}</title>
+			<title>{seoTitle || title}</title>
 			<meta name="description" content={seoDescription} />
 
 			{/* initial data */}

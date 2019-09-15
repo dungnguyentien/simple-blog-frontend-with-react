@@ -16,7 +16,10 @@ function withPageInit(PageComponent) {
 				data = Page404.GetInitialProps(context);
 			} finally {
 				if (typeof window !== 'undefined') {
-					const { title, seo: { title: seoTitle } = {} } = data;
+					const {
+						title: { rendered: title },
+						seo: { title: seoTitle } = {},
+					} = data;
 					document.title = seoTitle || title;
 				}
 				return data;
