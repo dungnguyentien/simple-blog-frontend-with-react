@@ -8,4 +8,23 @@
 	width: 100%;
 	padding: rem-calc(20 30);
 	font-size: rem-calc(14);
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	li {
+		display: inline-block;
+		margin-right: rem-calc(10);
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.site-footer__menu {
+	margin-bottom: rem-calc(10);
 }

@@ -5,7 +5,7 @@ function Menu({ className, items }) {
 	return (
 		<nav className="site-navigation">
 			<ul>
-				{items.map(({ id, url, title, children }) => (
+				{items.map(({ id, slug: url, title, children }) => (
 					<li key={id} className="site-navigation__item">
 						<NavLink to={url} activeClassName="active">
 							{title}
@@ -13,7 +13,7 @@ function Menu({ className, items }) {
 
 						{children && children.length > 0 && (
 							<ul>
-								{children.map(({ id: childId, url: childUrl, title: childTitle }) => (
+								{children.map(({ id: childId, slug: childUrl, title: childTitle }) => (
 									<li key={childId}>
 										<NavLink to={childUrl} activeClassName="active">
 											{childTitle}

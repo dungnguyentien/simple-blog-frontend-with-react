@@ -31,7 +31,7 @@ function getPost({ slug }) {
 					slug,
 				},
 			})
-			.then(response => resolve(response.data[0]))
+			.then(response => (response.data.length > 0 ? resolve(response.data[0]) : reject('404')))
 			.catch(error => reject(error));
 	});
 }

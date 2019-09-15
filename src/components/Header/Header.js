@@ -8,7 +8,7 @@ import SearchBox from './SearchBox';
 import './Header.scss';
 
 //
-function Header({ logo, title: { rendered: siteTitle }, description: siteDescription, primaryMenu, ...rest }) {
+function Header({ logo, title: { rendered: siteTitle }, description: siteDescription, primary_menu: { items: primaryMenu }, ...rest }) {
 	// console.log(rest);
 	return (
 		<header className="site-header">
