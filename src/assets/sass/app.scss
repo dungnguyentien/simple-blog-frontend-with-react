@@ -1,11 +1,9 @@
-@import './global/variables';
-@import './mixins/rem-calc';
+@import './abstracts/index';
 
-// lib
+// vendors
 @import '../../../node_modules/normalize.css/normalize.css';
 @import '../../../node_modules/nprogress/nprogress';
 
 // global
-@import './global/header';
-@import './global/footer';
+@import './global/fonts';
 @import './global/theme';

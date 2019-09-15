@@ -1,17 +1,29 @@
-.post-preview {
-	margin-bottom: rem-calc(70);
+@import '../../assets/sass/abstracts/index';
 
-	&:last-child {
-		margin-bottom: 0;
-	}
+.post-preview {
+	padding-bottom: rem-calc(35);
+	margin-bottom: rem-calc(25);
+	border-bottom: 1px solid rgba(#000, 0.15);
+
+	// &:last-child {
+	// 	margin-bottom: 0;
+	// 	padding-bottom: 0;
+	// 	border-bottom: none;
+	// }
 }
 
 .post-preview__title {
 	font-size: rem-calc(30);
 	margin: 0;
+	margin-bottom: rem-calc(15);
 
 	a {
 		color: #000;
 		text-decoration: none;
 	}
+}
+
+.post-preview__excerpt {
+	margin-bottom: rem-calc(15);
+	font-size: rem-calc(18);
 }

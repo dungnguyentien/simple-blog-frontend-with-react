@@ -1,7 +1,7 @@
 import React from 'react';
 import { compose } from 'redux';
 import { Switch, Route, withRouter, matchPath } from 'react-router';
-import NProgress from 'nprogress';
+// import NProgress from 'nprogress';
 
 // routes
 import routes from './config/routes';
@@ -15,6 +15,9 @@ import './assets/sass/app.scss';
 
 // services
 import { setGlobalData } from './services/globalDataService';
+
+// utils
+import { progressStart, progressDone } from './utils/nprogressHandler';
 
 class App extends React.Component {
 	constructor(props) {
@@ -56,7 +59,8 @@ class App extends React.Component {
 		// prefetch
 		if (nextState.needPrefetch) {
 			// start loading
-			NProgress.start();
+			// NProgress.start();
+			progressStart();
 
 			this.getInitialProps(nextState.nextLocation);
 			return false;
@@ -66,7 +70,8 @@ class App extends React.Component {
 	}
 
 	componentDidUpdate() {
-		NProgress.done();
+		// NProgress.done();
+		progressDone();
 	}
 
 	getInitialProps(nextLocation) {

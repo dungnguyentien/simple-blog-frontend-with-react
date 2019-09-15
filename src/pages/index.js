@@ -1,6 +1,5 @@
 import React from 'react';
 import { compose } from 'redux';
-// import Loadable from 'react-loadable';
 
 // api
 import apiGetFrontPage from '../api/pages/getFrontPage';
@@ -11,18 +10,12 @@ import store from '../store';
 
 // components
 import PostListing from '../modules/PostListing/PostListing';
-// import Loader from '../components/common/Loader';
 
 // hoc
 import withPageInit from '../hoc/withPageInit';
 
 // layout
 import withDefaultLayout from '../page-layouts/withDefaultLayout';
-
-// const LoadablePostListing = Loadable({
-// 	loader: () => import('../modules/PostListing/PostListing'),
-// 	loading: Loader,
-// });
 
 //
 class Home extends React.Component {
@@ -45,9 +38,9 @@ class Home extends React.Component {
 	render() {
 		const { postPageCount } = this.props.pageData;
 		return (
-			<div className="container">
+			<React.Fragment>
 				<PostListing pageCount={postPageCount} paginationPrefix="/page" />
-			</div>
+			</React.Fragment>
 		);
 	}
 }

@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 import PostMeta from './PostMeta';
 
+// styles
+import './PostPreview.scss';
+
 //
 function PostPreview({ title: { rendered: title }, slug, excerpt: { rendered: excerpt } = {}, modified_gmt: postedDate }) {
 	// console.log(rest);
@@ -13,7 +16,7 @@ function PostPreview({ title: { rendered: title }, slug, excerpt: { rendered: ex
 					{title}
 				</Link>
 			</h3>
-			<div dangerouslySetInnerHTML={{ __html: excerpt }} />
+			<div className="post-preview__excerpt" dangerouslySetInnerHTML={{ __html: excerpt }} />
 			<PostMeta postedDate={postedDate} />
 		</article>
 	);

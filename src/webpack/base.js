@@ -2,11 +2,15 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const MiniCssExtractPlugin = require('extract-css-chunks-webpack-plugin');
+const postCssScss = require('postcss-scss');
+const autoprefixer = require('autoprefixer');
+const postCssPresetEnv = require('postcss-preset-env');
 
 require('dotenv').config();
 
 const config = {
 	mode: 'development',
+	devtool: 'source-map',
 	module: {
 		rules: [
 			{
@@ -56,6 +60,23 @@ const config = {
 					},
 					// Compiles Sass to CSS
 					'sass-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							// sourceMap: true,
+							syntax: postCssScss,
+							plugins: () => [
+								autoprefixer,
+								postCssPresetEnv({
+									stage: 0,
+									features: {
+										'color-mod-function': true,
+										'alpha-hex-colors': true,
+									},
+								}),
+							],
+						},
+					},
 				],
 			},
 		],

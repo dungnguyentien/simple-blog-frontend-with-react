@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Loader() {
+function Loader({ isLoading }) {
 	return <div>loading...</div>;
 }
 

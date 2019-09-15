@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Pagination({ currentPage, pageCount, paginationPrefix, onClick }) {
+import './Pagination.scss';
+
+function Pagination({ currentPage, pageCount, paginationPrefix }) {
 	return (
-		<nav aria-label="Page navigation">
-			<ul className="pagination">
+		<nav className="pagination" aria-label="Page navigation">
+			<ul>
 				{/* previous button */}
 				<li className="page-item">
 					{currentPage < 2 && <span className="page-link disabled">Previous</span>}
@@ -19,9 +21,13 @@ function Pagination({ currentPage, pageCount, paginationPrefix, onClick }) {
 					const pageIndex = number + 1;
 					return (
 						<li key={pageIndex} className={`page-item ${pageIndex === currentPage ? 'active' : ''}`}>
-							<Link className="page-link" to={`${paginationPrefix}/${pageIndex}`}>
-								{pageIndex}
-							</Link>
+							{pageIndex === currentPage && <span>{pageIndex}</span>}
+
+							{pageIndex !== currentPage && (
+								<Link className="page-link" to={`${paginationPrefix}/${pageIndex}`}>
+									{pageIndex}
+								</Link>
+							)}
 						</li>
 					);
 				})}
