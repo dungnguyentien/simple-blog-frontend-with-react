@@ -1,0 +1,11 @@
+@import '../../assets/sass/abstracts/index';
+
+.site-footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	padding: rem-calc(20 30);
+	font-size: rem-calc(14);
+}

@@ -3,29 +3,22 @@ import { Link } from 'react-router-dom';
 
 // components
 import NavMenu from './NavMenu';
+import SearchBox from './SearchBox';
+
+import './Header.scss';
 
 //
-function Header({ logo, siteTitle, primaryMenu }) {
+function Header({ logo, title: { rendered: siteTitle }, description: siteDescription, primaryMenu, ...rest }) {
+	// console.log(rest);
 	return (
-		<div className="wrapper-header">
-			<div className="container">
-				<header className="site-header">
-					<nav className="navbar navbar-expand-lg">
-						<Link to="/" className="navbar-brand">
-							<img src={logo} alt={siteTitle} title={siteTitle} />
-						</Link>
-						<button className="navbar-toggler" type="button">
-							<span className="navbar-toggler__line"></span>
-							<span className="navbar-toggler__line"></span>
-							<span className="navbar-toggler__line"></span>
-						</button>
-						<div className="collapse navbar-collapse">
-							<NavMenu className="navbar-nav ml-auto" items={primaryMenu} />
-						</div>
-					</nav>
-				</header>
+		<header className="site-header">
+			<div className="site-header__logo">
+				<Link to="/">{siteTitle}</Link>
+				<p>{siteDescription}</p>
 			</div>
-		</div>
+			<NavMenu items={primaryMenu} />
+			<SearchBox />
+		</header>
 	);
 }
 

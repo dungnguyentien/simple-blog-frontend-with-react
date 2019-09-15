@@ -63,8 +63,41 @@
 
 .page-content {
 	padding-left: 700px;
+	padding-right: 320px;
+
+	.site-search {
+		input {
+			border: 1px solid rgba(#000, 0.15);
+			color: $body_color;
+			padding: rem-calc(10);
+			font-size: $body_font_size;
+		}
+	}
 }
 
 .page-content__inner {
 	padding: rem-calc(50 80);
+}
+
+.site-header-container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	display: block;
+	width: 320px;
+	height: 100vh;
+	z-index: 99;
+	background-color: #252525;
+	padding: rem-calc(50 30 30);
+	color: rgba(#fff, 0.65);
+	font-family: $font_fira_sans;
+
+	a {
+		color: rgba(#fff, 0.65);
+		text-decoration: none;
+
+		&:hover {
+			color: #fff;
+		}
+	}
 }

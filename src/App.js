@@ -101,7 +101,7 @@ class App extends React.Component {
 		const pageInitialPropsSync = this.state.data;
 
 		return (
-			<div className="App">
+			<React.Fragment>
 				{/* <Header {...globalDataSync} /> */}
 
 				<Switch location={this.state.location}>
@@ -121,7 +121,7 @@ class App extends React.Component {
 				</Switch>
 
 				{/* <Footer {...globalDataSync} /> */}
-			</div>
+			</React.Fragment>
 		);
 	}
 }

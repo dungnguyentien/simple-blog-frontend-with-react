@@ -3,36 +3,29 @@ import { NavLink } from 'react-router-dom';
 
 function Menu({ className, items }) {
 	return (
-		<ul className={className}>
-			{items.map(({ id, url, title, children }) => {
-				// has children
-				if (children) {
-					return (
-						<li key={id} className="nav-item dropdown">
-							<a href="#" className="nav-link dropdown-toggle">
-								{title}
-							</a>
-							<div className="dropdown-menu">
-								{children.map(child => (
-									<NavLink key={child.id} to={child.url} className="dropdown-item">
-										{child.title}
-									</NavLink>
-								))}
-							</div>
-						</li>
-					);
-				}
-
-				// no children
-				return (
-					<li key={id} className="nav-item">
-						<NavLink to={url} activeClassName="active" className="nav-link">
+		<nav className="site-navigation">
+			<ul>
+				{items.map(({ id, url, title, children }) => (
+					<li key={id} className="site-navigation__item">
+						<NavLink to={url} activeClassName="active">
 							{title}
 						</NavLink>
+
+						{children && children.length > 0 && (
+							<ul>
+								{children.map(({ id: childId, url: childUrl, title: childTitle }) => (
+									<li key={childId}>
+										<NavLink to={childUrl} activeClassName="active">
+											{childTitle}
+										</NavLink>
+									</li>
+								))}
+							</ul>
+						)}
 					</li>
-				);
-			})}
-		</ul>
+				))}
+			</ul>
+		</nav>
 	);
 }
 

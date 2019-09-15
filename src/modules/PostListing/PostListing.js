@@ -36,7 +36,7 @@ function isTheSameRoute(route, match) {
 }
 
 //
-function PostListing({ pageCount, posts, paginationPrefix, match, loadPosts, category }) {
+function PostListing({ pageCount, posts, paginationPrefix, match, loadPosts, queryArgs }) {
 	// console.log(match);
 	let { params: { page = 1 } = {} } = match;
 
@@ -74,8 +74,8 @@ function PostListing({ pageCount, posts, paginationPrefix, match, loadPosts, cat
 			progressStart();
 
 			loadPosts({
+				...queryArgs,
 				page,
-				category,
 			});
 		}
 	}, [page]);

@@ -42,6 +42,7 @@ function getGlobalData() {
 			title: {
 				rendered: 'Simple Blog',
 			},
+			description: faker.lorem.sentence(),
 			seo: {
 				title: 'Simple Blog - Just another WordPress site',
 				description: faker.lorem.sentence(),

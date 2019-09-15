@@ -4,7 +4,8 @@
 import Home from '../pages/index';
 import Page404 from '../pages/404';
 import SinglePost from '../pages/blog/_slug';
-import PageCategory from '../pages/category/_slug';
+import CategoryPage from '../pages/category/_slug';
+import SearchPage from '../pages/search';
 
 // @TODO: load routes based on /src/pages
 export default [
@@ -14,7 +15,9 @@ export default [
 	// blog
 	{ path: '/blog/:slug', exact: true, component: SinglePost },
 	// category
-	{ path: ['/category/:slug', '/category/:slug/page/:page'], exact: true, component: PageCategory },
+	{ path: ['/category/:slug', '/category/:slug/page/:page'], exact: true, component: CategoryPage },
+	// search
+	{ path: ['/search', '/search/:slug', '/search/:slug/page/:page'], exact: true, component: SearchPage },
 	// 404
 	{ path: '*', component: Page404 },
 ];

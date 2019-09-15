@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Neuton:400,700|Fira+Sans:400|700&display=swap');
+
 // fonts
 $font_sans_serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
 	'Helvetica Neue', sans-serif;
@@ -6,3 +8,7 @@ $font_fira_sans: 'Fira Sans', font_sans_serif;
 
 //
 $grid_gutter: 30px;
+
+//
+$body_color: #000;
+$body_font_size: rem-calc(20);

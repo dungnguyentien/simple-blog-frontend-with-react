@@ -1,5 +1,5 @@
 import React from 'react';
-import NProgress from 'nprogress';
+import { compose } from 'redux';
 
 // api
 import apiGetCategory from '../../api/categories/getCategory';
@@ -13,9 +13,10 @@ import PostListing from '../../modules/PostListing/PostListing';
 
 // hoc
 import withPageInit from '../../hoc/withPageInit';
+import withDefaultLayout from '../../page-layouts/withDefaultLayout';
 
 //
-class PageCategory extends React.Component {
+class CategoryPage extends React.Component {
 	// constructor(props) {
 	// 	super(props);
 
@@ -41,16 +42,16 @@ class PageCategory extends React.Component {
 	}
 
 	render() {
-		const { title, slug, postPageCount } = this.props.pageData;
+		const { slug: category, postPageCount } = this.props.pageData;
 		return (
-			<div className="container">
-				<main>
-					<h1>{title}</h1>
-					<PostListing pageCount={postPageCount} paginationPrefix={`/category/${slug}/page`} category={slug} />
-				</main>
-			</div>
+			<React.Fragment>
+				<PostListing pageCount={postPageCount} paginationPrefix={`/category/${slug}/page`} queryArgs={{ category: slug }} />
+			</React.Fragment>
 		);
 	}
 }
 
-export default withPageInit(PageCategory);
+export default compose(
+	withPageInit,
+	withDefaultLayout,
+)(CategoryPage);

@@ -9,21 +9,19 @@ function withPageInit(PageComponent) {
 		}
 
 		static async GetInitialProps(context) {
-			let data;
-			try {
-				data = await PageComponent.GetInitialProps(context);
-			} catch (error) {
-				data = Page404.GetInitialProps(context);
-			} finally {
-				if (typeof window !== 'undefined') {
-					const {
-						title: { rendered: title },
-						seo: { title: seoTitle } = {},
-					} = data;
-					document.title = seoTitle || title;
-				}
-				return data;
-			}
+			return PageComponent.GetInitialProps(context)
+				.then(data => data)
+				.catch(error => Page404.GetInitialProps(context))
+				.then(data => {
+					if (typeof window !== 'undefined') {
+						const {
+							title: { rendered: title },
+							seo: { title: seoTitle } = {},
+						} = data;
+						document.title = seoTitle || title;
+					}
+					return data;
+				});
 		}
 
 		render() {
