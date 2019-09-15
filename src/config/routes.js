@@ -17,7 +17,7 @@ export default [
 	// category
 	{ path: ['/category/:slug', '/category/:slug/page/:page'], exact: true, component: CategoryPage },
 	// search
-	{ path: ['/search', '/search/:slug', '/search/:slug/page/:page'], exact: true, component: SearchPage },
+	{ path: ['/search', '/search/:slug', '/search//page/:page', '/search/:slug/page/:page'], exact: true, component: SearchPage },
 	// 404
 	{ path: '*', component: Page404 },
 ];
