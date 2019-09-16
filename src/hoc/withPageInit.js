@@ -11,7 +11,10 @@ function withPageInit(PageComponent) {
 		static async GetInitialProps(context) {
 			return PageComponent.GetInitialProps(context)
 				.then(data => data)
-				.catch(error => Page404.GetInitialProps(context))
+				.catch(error => {
+					console.log(error);
+					Page404.GetInitialProps(context);
+				})
 				.then(data => {
 					if (typeof window !== 'undefined') {
 						const {

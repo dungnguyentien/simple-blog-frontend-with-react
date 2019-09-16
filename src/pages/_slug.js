@@ -18,7 +18,6 @@ class PageComponent extends React.Component {
 		} = routeParams;
 
 		const pageData = await apiGetPage(slug);
-		console.log(pageData);
 
 		return {
 			...pageData,

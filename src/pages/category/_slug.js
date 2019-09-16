@@ -27,25 +27,26 @@ class CategoryPage extends React.Component {
 	// }
 
 	static async GetInitialProps({ req, res, routeParams }) {
-		const { params: { slug } = {} } = routeParams;
+		const { params: { slug, page } = {} } = routeParams;
 
-		const { posts, ...pageData } = await apiGetCategory({ slug });
+		const { id: categoryId, posts, ...pageData } = await apiGetCategory({ slug, page });
 
 		//
 		store.dispatch(PostListActions.getPostsSuccess(posts));
 
 		//
 		return {
+			categoryId,
 			slug,
 			...pageData,
 		};
 	}
 
 	render() {
-		const { slug: category, postPageCount } = this.props.pageData;
+		const { categoryId, slug, postPageCount } = this.props.pageData;
 		return (
 			<React.Fragment>
-				<PostListing pageCount={postPageCount} paginationPrefix={`/category/${slug}/page`} queryArgs={{ category: slug }} />
+				<PostListing pageCount={postPageCount} paginationPrefix={`/category/${slug}/page`} queryArgs={{ categories: [categoryId] }} />
 			</React.Fragment>
 		);
 	}

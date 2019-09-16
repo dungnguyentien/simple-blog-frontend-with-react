@@ -27,23 +27,14 @@ import { extractPostData } from './getPost';
 // 	});
 // }
 
-function getPosts({ page, category, search }) {
+function getPosts({ page, queryArgs }) {
 	return new Promise((resolve, reject) => {
-		const params = {
-			page,
-			per_page: 10,
-			search,
-		};
-
-		//
-		if (category) {
-			params['categories'] = [category];
-		}
-
-		//
 		wpApi
 			.get('/wp/v2/posts', {
-				params,
+				params: {
+					...queryArgs,
+					page,
+				},
 			})
 			.then(response => {
 				const {

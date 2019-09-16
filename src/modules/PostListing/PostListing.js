@@ -74,7 +74,7 @@ function PostListing({ pageCount, posts, paginationPrefix, match, loadPosts, que
 			progressStart();
 
 			loadPosts({
-				...queryArgs,
+				queryArgs,
 				page,
 			});
 		}
