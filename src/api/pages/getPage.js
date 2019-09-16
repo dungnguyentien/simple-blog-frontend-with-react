@@ -6,6 +6,7 @@ function getPage(slug) {
 			.get('/wp/v2/pages', {
 				params: {
 					slug,
+					seo_include: true,
 				},
 			})
 			.then(response => (response.data.length > 0 ? resolve(response.data[0]) : reject('404')))

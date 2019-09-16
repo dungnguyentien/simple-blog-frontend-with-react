@@ -3,7 +3,7 @@ import compression from 'compression';
 import routes from './routes';
 
 //
-import renderServerSideContent from './middleware/renderServerSideContent';
+import renderServerSideContent from './renderServerSideContent';
 
 //
 const app = express();
@@ -11,7 +11,7 @@ const app = express();
 app.use(compression());
 app.use(express.static('public'));
 
-app.use('/', [renderServerSideContent], routes);
+app.use('/', renderServerSideContent);
 
 const port = process.env.PORT || 3000;
 

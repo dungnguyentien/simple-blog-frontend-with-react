@@ -7,27 +7,27 @@ import { StaticRouter, matchPath } from 'react-router';
 import { Provider } from 'react-redux';
 
 // html template
-import htmlTemplate from '../../assets/template.html';
+import htmlTemplate from '../assets/template.html';
 
 // store
-import store from '../../store';
+import store from '../store';
 
 // routes
-import routes from '../../config/routes';
+import routes from '../config/routes';
 
 //
-import App from '../../App';
-import AppHead from '../../components/AppHead/AppHead';
+import App from '../App';
+import AppHead from '../components/AppHead/AppHead';
 
 // api
-import apiGetGlobalData from '../../api/global/getGlobalData';
+import apiGetGlobalData from '../api/global/getGlobalData';
 
 // services
-import { setGlobalData } from '../../services/globalDataService';
+import { setGlobalData } from '../services/globalDataService';
 
 // reloadable stats
 // const reloadableStats = require('../../../buildServer/react-loadable.json');
-const webpackStats = require('../../../buildServer/stats.json');
+const webpackStats = require('../../buildServer/stats.json');
 
 //
 async function renderServerSideContent(req, res, next) {
@@ -88,15 +88,15 @@ async function renderServerSideContent(req, res, next) {
 	);
 
 	// ssr content
-	req.ssrContent = hbsTemplate({
+	const ssrContent = hbsTemplate({
 		appHead,
 		appContent,
 		styles,
 		scripts,
 	});
 
-	// next
-	next();
+	// response
+	return res.status(res.statusCode || 200).send(ssrContent);
 }
 
 //

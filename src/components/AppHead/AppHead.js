@@ -5,14 +5,22 @@ function AppHead({ globalData, pageInitialProps, initialState }) {
 	// @TODO head items
 	const {
 		title: { rendered: title },
-		seo: { title: seoTitle, description: seoDescription } = {},
+		seo = {},
 	} = pageInitialProps;
+
+	const { title: seoTitle, description: seoDescription, canonical, meta } = seo;
 
 	return (
 		<React.Fragment>
 			{/* SEO */}
 			<title>{seoTitle || title}</title>
-			<meta name="description" content={seoDescription} />
+			{seoDescription && <meta name="description" content={seoDescription} />}
+			<link rel="canonical" href={canonical} />
+
+			{/* meta tags */}
+			{meta.map(item => {
+				return <meta {...item} />;
+			})}
 
 			{/* initial data */}
 			<script type="text/javascript" dangerouslySetInnerHTML={{ __html: `window.__GLOBAL_DATA__=${serialize(globalData)};` }} />

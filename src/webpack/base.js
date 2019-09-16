@@ -85,7 +85,7 @@ const config = {
 		extensions: ['.js', '.jsx', '.json', '.wasm', '.mjs', '*'],
 	},
 	plugins: [
-		new webpack.EnvironmentPlugin(['WP_REST_API_BASE_URL']),
+		new webpack.EnvironmentPlugin(['WP_REST_API_BASE_URL', 'SITE_URL']),
 		new MiniCssExtractPlugin({
 			// Options similar to the same options in webpackOptions.output
 			// all options are optional
