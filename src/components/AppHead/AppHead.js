@@ -8,7 +8,7 @@ function AppHead({ globalData, pageInitialProps, initialState }) {
 		seo = {},
 	} = pageInitialProps;
 
-	const { title: seoTitle, description: seoDescription, canonical, meta } = seo;
+	const { title: seoTitle, description: seoDescription, canonical, meta = [] } = seo;
 
 	return (
 		<React.Fragment>

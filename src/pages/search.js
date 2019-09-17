@@ -25,7 +25,7 @@ class SearchPage extends React.Component {
 		const { params: { page = 1, slug: search = '' } = {} } = routeParams || {};
 
 		// call api
-		const { posts, ...pageData } = await apiSearchPosts({ page, search });
+		const { posts, ...pageData } = await apiSearchPosts({ queryArgs: { page, search } });
 		// console.log(posts, pageData);
 
 		// update posts state
