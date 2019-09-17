@@ -13,15 +13,23 @@ import './withDefaultLayout.scss';
 function withDefaultLayout(PageComponent) {
 	class DefaultLayout extends React.Component {
 		render() {
+			const globalData = getGlobalData();
+			const {
+				// site featured image
+				site_featured_image: { source_url: siteFeaturedUrl, alt_text: siteFeaturedAlt, title: { rendered: siteFeaturedTitle } = {} },
+			} = globalData;
+
 			const {
 				title: { rendered: title } = {},
 				excerpt: { rendered: excerpt } = {},
-				featured_media_data: { source_url: featuredUrl, alt_text: featuredAlt, title: { rendered: featuredTitle } = {} } = {},
+				featured_media_data: {
+					source_url: featuredUrl = siteFeaturedUrl,
+					alt_text: featuredAlt = siteFeaturedAlt,
+					title: { rendered: featuredTitle = siteFeaturedTitle } = {},
+				} = {},
 				type: postType,
 				modified_gmt: postedDate,
 			} = this.props.pageData;
-
-			const globalData = getGlobalData();
 
 			return (
 				<React.Fragment>

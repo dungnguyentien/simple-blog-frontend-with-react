@@ -9,6 +9,7 @@ function AppHead({ globalData, pageInitialProps, initialState }) {
 	} = pageInitialProps;
 
 	const { title: seoTitle, description: seoDescription, canonical, meta = [] } = seo;
+	console.log(meta);
 
 	return (
 		<React.Fragment>
@@ -18,8 +19,8 @@ function AppHead({ globalData, pageInitialProps, initialState }) {
 			<link rel="canonical" href={canonical} />
 
 			{/* meta tags */}
-			{meta.map(item => {
-				return <meta {...item} />;
+			{meta.map((item, itemIndex) => {
+				return <meta key={itemIndex} {...item} />;
 			})}
 
 			{/* initial data */}
