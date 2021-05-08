@@ -24,7 +24,7 @@
 		"express": "^4.17.1",
 		"extract-css-chunks-webpack-plugin": "^4.6.0",
 		"global": "^4.4.0",
-		"handlebars": "^4.2.0",
+		"handlebars": "^4.7.7",
 		"hoist-non-react-statics": "^3.3.0",
 		"normalize.css": "^8.0.1",
 		"nprogress": "^0.2.0",
